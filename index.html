@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesti, vreme i kursna lista</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #eef1f6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* LEVA KOLONA – EKONOMIJA */
+        .kolona-ekonomija {
+            flex: 2 1 480px;
+            min-width: 280px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            padding: 14px;
+        }
+
+        /* DESNA KOLONA – VREME + KURSNA LISTA */
+        .kolona-desna {
+            flex: 1 1 300px;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            padding: 14px;
+        }
+
+        .widget h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #374151;
+            margin-bottom: 10px;
+            padding-left: 4px;
+        }
+
+        .widget iframe {
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+        }
+
+        /* Ekonomija – visoki widget */
+        .kolona-ekonomija iframe {
+            height: 934px;
+            min-height: 600px;
+        }
+
+        /* Vreme */
+        .widget-vreme iframe {
+            height: 180px;
+        }
+
+        /* Kursna lista */
+        .widget-kurs iframe {
+            height: 170px;
+        }
+
+        /* RESPONSIVE – uski ekrani: sve jedno ispod drugog */
+        @media (max-width: 750px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .kolona-ekonomija,
+            .kolona-desna {
+                flex: 1 1 auto;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .kolona-desna {
+                gap: 16px;
+            }
+
+            .kolona-ekonomija iframe {
+                height: 700px;
+                min-height: 450px;
+            }
+
+            .widget {
+                padding: 10px;
+                border-radius: 14px;
+            }
+
+            .kolona-ekonomija {
+                padding: 10px;
+                border-radius: 14px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .kolona-ekonomija iframe {
+                height: 600px;
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEVO: EKONOMIJA -->
+        <div class="kolona-ekonomija">
+            <h3>📈 Ekonomija</h3>
+            <iframe
+                src="https://naslovi.net/widget/?type=ekonomija&bgcolor=F5F5F5&textcolor=000000&separatorcolor=D0D0D0&count=10&"
+                frameborder="0"
+                scrolling="no"
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- DESNO: VREME + KURSNA LISTA -->
+        <div class="kolona-desna">
+
+            <!-- VREME -->
+            <div class="widget widget-vreme">
+                <h3>☀️ Vremenska prognoza</h3>
+                <iframe
+                    src="https://naslovi.net/vremenska-prognoza/widget/beograd?big=1"
+                    frameborder="0"
+                    scrolling="no"
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- KURSNA LISTA -->
+            <div class="widget widget-kurs">
+                <h3>💱 Kursna lista</h3>
+                <iframe
+                    id="iframe_vreme"
+                    src="https://naslovi.net/plugin/kursna_lista2.php?bgcolor=ffffff&color=000000"
+                    frameborder="0"
+                    scrolling="no"
+                    loading="lazy">
+                    <a href="https://naslovi.net/kursna_lista.php">Kursna lista</a>
+                </iframe>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
